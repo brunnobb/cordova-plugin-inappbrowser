@@ -747,7 +747,18 @@ public class InAppBrowser extends CordovaPlugin {
                 actionButtonContainer.addView(back);
                 actionButtonContainer.addView(forward);
 
+
                 // Add the views to our toolbar
+                toolbar.addView(actionButtonContainer);
+                if (getShowLocationBar()) {
+                    toolbar.addView(edittext);
+                }
+                toolbar.addView(close);
+
+                main.addView(toolbar);
+
+
+                /*// Add the views to our toolbar
                 toolbar.addView(actionButtonContainer);
                 toolbar.addView(edittext);
                 toolbar.addView(close);
@@ -756,7 +767,7 @@ public class InAppBrowser extends CordovaPlugin {
                 if (getShowLocationBar()) {
                     // Add our toolbar to our main view/layout
                     main.addView(toolbar);
-                }
+                }*/
 
                 // Add our webview to our main view/layout
                 main.addView(inAppWebView);
