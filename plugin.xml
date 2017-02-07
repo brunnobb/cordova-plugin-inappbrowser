@@ -20,7 +20,7 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
            id="cordova-plugin-inappbrowser"
-      version="1.5.1-dev">
+      version="1.6.2-dev">
 
     <name>InAppBrowser</name>
     <description>Cordova InAppBrowser Plugin</description>
@@ -131,6 +131,22 @@
 	    <framework src="CoreGraphics.framework" />
     </platform>
 
+    <!-- osx -->
+    <platform name="osx">
+        <js-module src="www/inappbrowser.js" name="inappbrowser">
+            <clobbers target="cordova.InAppBrowser.open" />
+            <clobbers target="window.open" />
+        </js-module>
+        <config-file target="config.xml" parent="/*">
+            <feature name="InAppBrowser">
+                <param name="osx-package" value="CDVInAppBrowser" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/osx/CDVInAppBrowser.h" />
+        <source-file src="src/osx/CDVInAppBrowser.m" />
+    </platform>
+
     <!-- wp7 -->
     <platform name="wp7">
         <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
@@ -195,11 +211,11 @@
             <clobbers target="window.open" />
         </js-module>
         <js-module src="src/windows/InAppBrowserProxy.js" name="InAppBrowserProxy">
-            <merges target="" />
+            <runs />
         </js-module>
         <asset src="www/inappbrowser.css" target="css/inappbrowser.css" />
     </platform>
-  
+
     <!-- firefoxos -->
     <platform name="firefoxos">
         <config-file target="config.xml" parent="/*">
@@ -210,7 +226,7 @@
             <clobbers target="window.open" />
         </js-module>
         <js-module src="src/firefoxos/InAppBrowserProxy.js" name="InAppBrowserProxy">
-            <merges target="" />
+            <runs />
         </js-module>
     </platform>
 
@@ -221,7 +237,7 @@
             <clobbers target="window.open" />
         </js-module>
         <js-module src="src/browser/InAppBrowserProxy.js" name="InAppBrowserProxy">
-            <merges target="" />
+            <runs />
         </js-module>
     </platform>
 </plugin>
